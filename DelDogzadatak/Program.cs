@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace DelDogzadatak
 {
@@ -9,21 +10,16 @@ namespace DelDogzadatak
 
         static void Main(string[] args)
         {
-            Semafor s1 = new Semafor(2);
-            Semafor s2 = new Semafor(3);
-            Semafor s3 = new Semafor(4);
-            Semafor s4 = new Semafor(5);
+            int[] brojevi = { 1, 6, 3, 8, 2, 7, 4, 9 };
 
-            s2.PostaviZeleno();
-            s4.PostaviZeleno();
-         List<Semafor> list = new List<Semafor>() { s1,s2,s3,s4};
-
-            foreach (Semafor s in list)
+            var result = brojevi.Where(num => num > 5);//veci od 5
+            var kvadrati = brojevi.Select(x => x * x);//kvadriranje brojeva
+            var sortirano = brojevi.OrderBy(x => x);//sortirani
+            Console.WriteLine("Brojevi veći od 5:");
+            foreach (var num in sortirano)
             {
-                s.PokreniProces();
+                Console.WriteLine(num);
             }
-
-
             Console.ReadLine();
         }
         
