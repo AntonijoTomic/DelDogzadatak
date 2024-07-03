@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DelDogzadatak
@@ -20,7 +21,7 @@ namespace DelDogzadatak
             get { return _trenutnaBoja; }
             set { 
                 _trenutnaBoja = value;
-                StanjePromjenjeno.Invoke(this, value);
+                OnStanjePromjenjeno(value);
             }
         }
         public int Index { get; }
@@ -45,8 +46,43 @@ namespace DelDogzadatak
             TrenutnoSvijetlo = BojaSvijetla.Zeleno;
         }
 
+   
+        public void PokreniProces()
+        {
+            Thread thread = new Thread(() =>
+            {
+                while (true)
+                {
+                  
+              
+                    if (_trenutnaBoja == BojaSvijetla.Crveno)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"Semafor s indexom {Index} je Crveno.");
+                        Console.ResetColor();
+                        PostaviZuto();
+                        PostaviZeleno();
+                    }
+                    else if(_trenutnaBoja== BojaSvijetla.Zeleno)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"Semafor s indexom {Index} je zeleno.");
+                        Console.ResetColor();
+                        PostaviZuto();
+                        PostaviCrveno();
+                    }
+                 
+                    Thread.Sleep(5000);
+                    Console.Clear();
 
-
+                }
+            });
+            thread.Start();
+        }
+        public virtual void OnStanjePromjenjeno(BojaSvijetla novoStanje)
+        {
+            StanjePromjenjeno?.Invoke(this, novoStanje);
+        }
 
     }
 }
