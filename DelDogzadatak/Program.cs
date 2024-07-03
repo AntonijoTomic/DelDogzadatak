@@ -8,9 +8,19 @@ namespace DelDogzadatak
         static void Main(string[] args)
         {
 
-            MatematickeOperacije delegatMatematicar = Zbroji;
-            delegatMatematicar += Pomnozi;
-            delegatMatematicar += Oduzmi;
+            MatematickeOperacije delegatZbrajanje = Zbroji;
+            delegatZbrajanje(10, 5);
+
+            MatematickeOperacije delegatOduzimanje = Oduzmi;
+            delegatOduzimanje(10, 5);
+
+            MatematickeOperacije delegatMnozenje = Pomnozi;
+            delegatMnozenje(10, 5);
+
+            Console.WriteLine();
+
+            MatematickeOperacije delegatMatematicar = delegatZbrajanje + delegatOduzimanje + delegatMnozenje;
+
 
             delegatMatematicar.Invoke(10, 5);
 
