@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace DelDogzadatak
 {
@@ -7,14 +8,11 @@ namespace DelDogzadatak
 
         static void Main(string[] args)
         {
-            Utakmica utakmica = new Utakmica();
-            Rezultat rezultat = new Rezultat(utakmica);
-           
-            utakmica.GolDomaci();
-            utakmica.GolGost();
-            utakmica.GolDomaci();
+            Semafor s1 = new Semafor(1);
+            Semafor s2 = new Semafor(2);
+            Semafor s3 = new Semafor(3);
+            Semafor s4 = new Semafor(4);
 
-            Console.ReadKey();
             
         }
 
