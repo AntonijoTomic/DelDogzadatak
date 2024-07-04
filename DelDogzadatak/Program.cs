@@ -32,12 +32,11 @@ namespace DelDogzadatak
 
     public class Osoba
     {
-        // Polja (atributi) klase Osoba
+    
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public int Godine { get; set; }
 
-        // Konstruktor klase Osoba
         public Osoba(string ime, string prezime, int godine)
         {
             Ime = ime;
