@@ -10,18 +10,39 @@ namespace DelDogzadatak
 
         static void Main(string[] args)
         {
-            int[] brojevi = { 1, 6, 3, 8, 2, 7, 4, 9 };
+           
 
-            var result = brojevi.Where(num => num > 5);//veci od 5
-            var kvadrati = brojevi.Select(x => x * x);//kvadriranje brojeva
-            var sortirano = brojevi.OrderBy(x => x);//sortirani
-            Console.WriteLine("Brojevi veći od 5:");
-            foreach (var num in sortirano)
+            List<Osoba> osobe = new List<Osoba>() {
+            new Osoba("Marko", "Marković", 10),
+            new Osoba("Ana", "Anić", 22),
+            new Osoba("Petar", "Petrović", 2),
+            new Osoba("Jelena", "Jelić", 24),
+            new Osoba("Ivan", "Ivanić", 32)};
+
+            var Punoljetni = osobe.Where(o => o.Godine > 17);
+            var imeNaM = osobe.Where(o => o.Ime.StartsWith("M"));
+            foreach (var osoba in Punoljetni)
             {
-                Console.WriteLine(num);
+                Console.WriteLine($"{osoba.Ime} {osoba.Prezime}, {osoba.Godine} godina");
             }
             Console.ReadLine();
         }
         
+    }
+
+    public class Osoba
+    {
+        // Polja (atributi) klase Osoba
+        public string Ime { get; set; }
+        public string Prezime { get; set; }
+        public int Godine { get; set; }
+
+        // Konstruktor klase Osoba
+        public Osoba(string ime, string prezime, int godine)
+        {
+            Ime = ime;
+            Prezime = prezime;
+            Godine = godine;
+        }
     }
 }
